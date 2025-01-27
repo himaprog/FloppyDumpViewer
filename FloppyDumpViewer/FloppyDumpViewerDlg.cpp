@@ -921,11 +921,10 @@ BOOL CFloppyDumpViewerDlg::GenerateHexCharData(CByteArray& oHexCharData, CHARSET
 	BOOL bRet = FALSE;
 
 	PBYTE pBuf, ppBuf;
-	const size_t nBufSize = nDataSize;
 	BYTE byCur, byLast;
 	bool bLeadbyte;
 
-	pBuf = ppBuf = new BYTE[nBufSize];
+	pBuf = ppBuf = new BYTE[nDataSize];
 	byLast = 0;
 	bLeadbyte = false;
 
@@ -956,14 +955,12 @@ BOOL CFloppyDumpViewerDlg::GenerateHexCharData(CByteArray& oHexCharData, CHARSET
 					if (bLeadbyte)
 					{
 						*ppBuf++ = byCur;
-						bLeadbyte = true;
 						byLast = byCur;
 					}
 					else
 					{
 						byCur &= 0x7F;
 						*ppBuf++ = _istprint(byCur) ? byCur : '.';
-						bLeadbyte = false;
 						byLast = 0;
 					}
 					continue;
@@ -993,7 +990,7 @@ BOOL CFloppyDumpViewerDlg::GenerateHexCharData(CByteArray& oHexCharData, CHARSET
 			break;
 
 		default:
-			memset(pBuf, 0, nBufSize);
+			memset(pBuf, 0, nDataSize);
 			byLast = 0;
 			goto L_Term;
 	}
@@ -1001,8 +998,8 @@ BOOL CFloppyDumpViewerDlg::GenerateHexCharData(CByteArray& oHexCharData, CHARSET
 	bRet = TRUE;
 
 L_Term:
-	oHexCharData.SetSize(nBufSize);
-	memcpy(oHexCharData.GetData(), pBuf, nBufSize);
+	oHexCharData.SetSize(nDataSize);
+	memcpy(oHexCharData.GetData(), pBuf, nDataSize);
 
 	if (pBuf != nullptr)
 	{
