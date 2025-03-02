@@ -92,7 +92,7 @@ protected:
 	CHARSET m_nCharSet;
 
 	SECTORSINFO m_oSecInfo1440 = { _T("3.5\", 1.44MB"), 1, 9, 14, 2847, 2880 };
-	SECTORSINFO m_oSecInfo720 = { _T("3.5\", 720KB"), 1, 3, 7, 1426, 1440 };
+	SECTORSINFO m_oSecInfo720 = { _T("3.5\", 720KB"), 1, 3, 7, 1426, 1400 };
 	DISKINFO m_oDiskInfo;
 	PBYTE m_pbySectorBuf;
 
@@ -128,5 +128,5 @@ protected:
 	BOOL ReadDiskInfo();
 	LPCTSTR GetDiskTypeName();
 	void UpdateHexView(BOOL bReadDisk = TRUE);
-	BOOL GenerateHexCharData(CByteArray& oHexCharData, CHARSET nCharSet, const BYTE* pbyData, size_t nDataSize, BYTE* pbyNextOne = nullptr);
+	BOOL GenerateHexCharData(CByteArray& oHexCharData, CHARSET nCharSet, const BYTE* pbyData, size_t nDataSize, BYTE* pbyNextOne = NULL);
 };
