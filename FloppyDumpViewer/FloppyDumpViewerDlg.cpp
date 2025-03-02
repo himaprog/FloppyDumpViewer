@@ -48,8 +48,6 @@ END_MESSAGE_MAP()
 
 // CFloppyDumpViewerDlg ダイアログ
 
-
-
 static LPCTSTR g_strIndexNameSet[] = { _T("全体"), _T("ＭＢＲ"), _T("ＦＡＴ １"), _T("ＦＡＴ ２"), _T("ルート・ディレクトリ"), _T("データ領域") };
 static LPCTSTR g_strCharSet[] = { _T("ASCII"), _T("Shift-JIS") };
 
